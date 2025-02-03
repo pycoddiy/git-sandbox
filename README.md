@@ -109,18 +109,21 @@ git commit -m "Initial commit of the project repo, that includes the JS app, REA
 
 7. Repeat steps by adding new (.gitignore) and modified files (README.md, etc) into the staging area. Then commit them with additional `-m` message. Do not forget to check the status frequently with `$ git status`.
 
-8. Now the is almost ready for the remote push. But this is not the best practice to follow. By default the push will happen to the `master` branch, which is typically supposed to be the up-to-date branch of the project, from which other people fetch stable working sources. If you perform the push into that branch and you code will break someing, then other people won't be able to use the project.
+8. Now it's a good time to get local repository pushed to the remote. We will use GitHub as a remote repo. Log in to GitHub and add New repository there. We will use the same name `git-sandbox` as for the local project.
 
-9. To mitigate that risk, it is a common practice is to create a custom branch, containing your changes, push it to the remote so that others can take a look at the changes in this branch, and then if the changes look good, merge that branch into the `master`. To create the branch, use `$ git branch branch-name`, e.g. for our push the branch might be created like `$ git branch initial-essentials` or similar.
-
-10. Then run `$ git branch` to see that you're still on the `master` branch. To switch to another branch you run `$ git checkout initial-essentials`. Ensure you are on the new branch by running `$ git branch`.
-
-11. Now it's a good time to get local repository pushed to the remote. We will use GitHub as a remote repo. Log in to GitHub and add New repository there. We will use the same name `git-sandbox` as for the local project.
-
-12. Do not add README.md and LICENSE (we will push these from the local). Just add a meaningful repo description. In the end the GitHub will offer instructions how to push local repo to GitHub:
+9. Do not add README.md and LICENSE (we will push these from the local repo). Just add a meaningful repo description. In the end the GitHub will offer instructions how to push local repo to GitHub:
 
 ```
 git remote add origin https://github.com/pycoddiy/git-sandbox.git
 git branch -M main
 git push -u origin main
 ```
+
+10. After running above commands check out the GitHub repo. It is now synchronized with your local repo. You are good to continue working with the README to add extra instructions. But before doing this, let us follow the best practices by working with branches. It is not the best practice push directly to `main` branch, which is supposed to be the up-to-date branch of the project, from which other people fetch stable working sources. If you perform the push into that branch and you code breaks someing, then other people won't be able to use the project.
+
+11. To mitigate this risk, a developer creates a custom branche with proposed changes, pushes it to the remote so that others can inspect changes. If the changes look good, the custom branch is merged into the `main`. To create the branch, use `$ git branch <branch-name>`. Since our changes will aim at README improvements, it would be wise to create something like this `$ git branch improve-readme`.
+
+12. Run `$ git branch` to see that you're still on the `main` branch. To switch to another branch you run `$ git checkout improve-readme`. Ensure you are on the new branch by running `$ git branch`.
+
+13. After completing edits to the README.md document,  run `$ git add README.md`. Check the status `$ git status` and then perform the commit. Push the branch to the remote `$ git push -u origin improve-readme`. Get back to GitHub.
+
