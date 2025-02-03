@@ -127,3 +127,8 @@ git push -u origin main
 
 13. After completing edits to the README.md document,  run `$ git add README.md`. Check the status `$ git status` and then perform the commit. Push the branch to the remote `$ git push -u origin improve-readme`. Get back to GitHub.
 
+14. At the top of the GitHub screen you will see the notification saying "**improve-readme** has recent pushes 3 seconds ago" with the button suggesting **Comparing & pull request**. Click the button. Fill in description and click **Create pull request**.
+
+15. Perform review of the PR (Pull Request), ask for co-reviewers. If everything looks good, merge the PR to `main`. 
+
+16. You can continue edititing README in the `improve-readme` branch as long as you need. Regularly create new PRs to get local changes pushed to `main`.
