@@ -68,6 +68,8 @@ console.log("Hello World!")
 
 ```bash
 git status
+```
+```console
 On branch master
 
 No commits yet
@@ -80,6 +82,45 @@ Untracked files:
 ```
 
 
-Add the file that we just created into the git's staging area `$git add app.js`.
+3. Run Add the file that we just created into the git's staging area `$ git add LICENSE README.md app.js` to add all modified files to the staging area. It is not a bad practice to add files one by one by specifying their names to control what you add and to avoid a mess in the staging area --- know exaclt what you're adding.
 
-3. 
+4. Run `$ git status` to make sure the files are in the staging area:
+
+```console
+ committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   LICENSE
+        new file:   README.md
+        new file:   app.js
+```
+
+5. Now we are ready to make an initial commit of the project. To do that you need to run `$ git commit -m "Description of the changes being committed"`. The option `-m` followed by the string describes what exactly changes are being committed. Do not underestimate the necessity to provide meaningful comments. If later you will need to find something in the change history, you will really thank those who did not ignore to provide a meaningful message for the commit.
+
+```
+git commit -m "Initial commit of the project repo, that includes the JS app, README.md with insturctions, how to start the project from scratch, and the LICENSE file"
+
+ 3 files changed, 87 insertions(+)
+ create mode 100644 LICENSE
+ create mode 100644 README.md
+ create mode 100644 app.js
+```
+
+6. Add `.gitignore`. From terminal run `$ touch .gitignore`. Then edit the file in VSCode by adding files and file extensions you do not want to be ever committed. Typically these are derivative files of your local runs, e.g. log files (`*.log`, `*.tmp`), or if you program in Nuxt or TypeScript, your local project repository will contain resulting HTML and JS files --- these are derivative files. You do not necessarily want to commiit them. You can always regenerate them on a target system. Use your judgement to decide what is essential and what is secondary/derivative. For security reasons never commit secrets, passwords, private and sensitive data.
+
+7. Repeat steps by adding new (.gitignore) and modified files (README.md, etc) into the staging area. Then commit them with additional `-m` message. Do not forget to check the status frequently with `$ git status`.
+
+8. Now the is almost ready for the remote push. But this is not the best practice to follow. By default the push will happen to the `master` branch, which is typically supposed to be the up-to-date branch of the project, from which other people fetch stable working sources. If you perform the push into that branch and you code will break someing, then other people won't be able to use the project.
+
+9. To mitigate that risk, it is a common practice is to create a custom branch, containing your changes, push it to the remote so that others can take a look at the changes in this branch, and then if the changes look good, merge that branch into the `master`. To create the branch, use `$ git branch branch-name`, e.g. for our push the branch might be created like `$ git branch initial-essentials` or similar.
+
+10. Then run `$ git branch` to see that you're still on the `master` branch. To switch to another branch you run `$ git checkout initial-essentials`. Ensure you are on the new branch by running `$ git branch`.
+
+11. Now it's a good time to get local repository pushed to the remote. We will use GitHub as a remote repo. Log in to GitHub and add New repository there. We will use the same name `git-sandbox` as for the local project.
+
+12. Do not add README.md and LICENSE (we will push these from the local). Just add a meaningful repo description. In the end the GitHub will offer instructions how to push local repo to GitHub:
+
+```
+git remote add origin https://github.com/pycoddiy/git-sandbox.git
+git branch -M main
+git push -u origin main
+```
